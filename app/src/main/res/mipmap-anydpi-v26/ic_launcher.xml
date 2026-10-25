@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2026-10-11 icon swap. Background switched from white to brand red (#C00000) and the
+     foreground from the upstream FongMi vector to the generated red-crab PNG layers in
+     drawable-{mdpi..xxxhdpi}/ic_launcher_foreground.png. Both boxes run API 28, so this
+     anydpi-v26 adaptive icon is what the launcher actually renders; the mipmap PNGs are
+     only the pre-26 fallback. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+      <background android:drawable="@color/xie_red" />
+      <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>

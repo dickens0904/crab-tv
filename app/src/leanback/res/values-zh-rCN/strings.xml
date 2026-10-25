@@ -1,0 +1,45 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <!-- Home -->
+    <string name="home_vod">点播</string>
+    <string name="home_live">直播</string>
+    <string name="home_search">搜索</string>
+    <string name="home_keep">收藏</string>
+    <string name="home_push">推送</string>
+    <string name="home_setting">设置</string>
+    <string name="home_history">最近观看</string>
+    <string name="home_recommend">更新推荐</string>
+
+    <!-- Collect -->
+    <string name="collect_result">“<xliff:g name="name">%s</xliff:g>”的搜索结果</string>
+
+    <!-- Push -->
+    <string name="push_clip">推送剪贴板内容</string>
+    <string name="push_info">使用手机扫描二维码，或于浏览器访问地址\n<xliff:g name="name">%s</xliff:g></string>
+
+    <!-- Depot -->
+    <string name="home_depot">多仓</string>
+    <string name="depot_title">发现多仓 (GitHub)</string>
+    <string name="depot_search">搜索 GitHub</string>
+    <string name="depot_idle">点击搜索，扫描 GitHub 上的多仓配置；连通测试通过的会自动加入软件源。</string>
+    <string name="depot_summary">已自动添加 <xliff:g name="count">%1$d</xliff:g> 个源（通过 <xliff:g name="pass">%2$d</xliff:g> / 失败 <xliff:g name="fail">%3$d</xliff:g> / 跳过 <xliff:g name="skip">%4$d</xliff:g>）</string>
+    <string name="depot_limited">GitHub 限流，稍后再试</string>
+    <string name="depot_timeout">搜索超时，仅显示部分结果</string>
+    <string name="depot_empty">未找到配置候选</string>
+    <string name="depot_stage_search_progress">正在搜索 GitHub… <xliff:g name="done">%1$d</xliff:g>/<xliff:g name="total">%2$d</xliff:g></string>
+    <string name="depot_stage_probe">正在测试通畅性 <xliff:g name="done">%1$d</xliff:g>/<xliff:g name="total">%2$d</xliff:g>…</string>
+    <string name="depot_stage_add">已添加 <xliff:g name="done">%1$d</xliff:g> 条源…</string>
+    <string name="depot_searching">正在搜索 GitHub…</string>
+
+    <!-- 多仓：源类型标签 -->
+    <string name="depot_type_api">接口</string>
+    <string name="depot_type_jar">爬虫依赖</string>
+    <string name="depot_type_unknown">待展开</string>
+    <string name="depot_recommended">推荐源</string>
+    <string name="depot_recommend">推荐源</string>
+    <string name="depot_recommend_hint">实测可用的纯 HTTP 源，不依赖 spider/jar；点击即加载。</string>
+    <string name="depot_rec_vod">点播 · bdzy/hhzy（8099）</string>
+    <string name="depot_rec_live">直播 · 142 频道（8099）</string>
+    <string name="depot_rec_loaded">推荐源已加载</string>
+
+</resources>
