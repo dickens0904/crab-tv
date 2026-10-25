@@ -1,0 +1,5 @@
+# 蟹老板TV 仓库约定
+# cmd/bat 必须是 CRLF：cmd.exe 解析 LF 会直接失败（计划任务 result=255、日志零输出）
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.sh text eol=lf
