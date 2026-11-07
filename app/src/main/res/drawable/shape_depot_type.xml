@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2026-10-13：多仓结果行「源类型」标签的胶囊底色。
+     背景压得很淡（白 12%），让文字颜色（绿=接口 / 灰=爬虫依赖）主导，
+     深色底上不刺眼，两端（leanback 灰底、mobile grey_700 底）通用。 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="10dp" />
+
+    <solid android:color="@color/white_10" />
+
+</shape>

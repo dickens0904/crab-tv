@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2026-10-11 icon swap: same as ic_launcher.xml, round variant. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+      <background android:drawable="@color/xie_red" />
+      <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>
