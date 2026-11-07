@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2026-10-11 icon swap.
+     Changed from <adaptive-icon> to <bitmap>. A banner is a fixed 320x180 (or wider) strip,
+     not a masked shape: feeding the composed banner through adaptive-icon would have the
+     launcher's mask crop the centre out of it. A plain bitmap renders exactly as authored.
+     The artwork lives in drawable/ic_banner.png (320x180 default) and
+     drawable-{mdpi..xxxhdpi}/ic_banner.png (320x180 up to 1920x1080). -->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/ic_banner"
+    android:gravity="fill" />
