@@ -1,0 +1,6 @@
+lxml
+ujson
+pyquery
+requests
+pycryptodome
+beautifulsoup4
