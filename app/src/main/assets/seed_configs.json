@@ -1,0 +1,20 @@
+[
+ {
+  "name": "蟹老板tv(点播)",
+  "url": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/%E8%9F%B9%E8%80%81%E6%9D%BFtv%28%E7%82%B9%E6%92%AD%29.json",
+  "type": 0,
+  "time": 1795000000000
+ },
+ {
+  "name": "推荐点播 · 网盘72源",
+  "url": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/mobile_vod_pan.json",
+  "type": 0,
+  "time": 1794000000000
+ },
+ {
+  "name": "蟹老板tv(直播)",
+  "url": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/%E8%9F%B9%E8%80%81%E6%9D%BFtv%28%E7%9B%B4%E6%92%AD%29.m3u",
+  "type": 1,
+  "time": 1795000000000
+ }
+]
