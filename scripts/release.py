@@ -13,8 +13,17 @@
     python scripts/release.py --code-only        # 只自增 VERSION_CODE
     python scripts/release.py --dry-run          # 只打印计划，不改文件不提交
     python scripts/release.py --skip-build       # 跳过本地构建（只提交+打tag+Release）
+    python scripts/release.py --apk-json-only    # 只更新 crab-tv-live 版本 JSON（构建失败手动补时用）
+    python scripts/release.py --desc "说明"      # 指定版本 JSON 的 desc
+    python scripts/release.py --no-apk-json      # 跳过版本 JSON 更新
+
+发版完整流程：自增版本 → 提交 → 打 tag → 构建 → 推 main/tag → 建 GitHub Release →
+更新 crab-tv-live 版本 JSON（App 自动更新源）。APK 下载走 Release latest/download，
+版本 JSON 在 crab-tv-live，两者缺一不可，否则 App 检测不到更新。
 """
 import argparse
+import base64
+import json
 import os
 import re
 import shutil
@@ -25,6 +34,9 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VER_FILE = os.path.join(ROOT, "version.properties")
 REPO = "dickens0904/crab-tv"
+# App 自动更新的版本 JSON 所在仓库（APK 下载走 GitHub Release latest/download，版本 JSON 在此）
+LIVE_REPO = "dickens0904/crab-tv-live"
+APK_JSON_FLAVORS = ("mobile", "leanback")
 APKS = [
     "app/build/outputs/apk/mobile/release/mobile-arm64_v8a.apk",
     "app/build/outputs/apk/mobile/release/mobile-armeabi_v7a.apk",
@@ -125,6 +137,42 @@ def gh_path():
     raise SystemExit("找不到 gh（GitHub CLI）")
 
 
+def gh_api(gh, method, path, fields=None):
+    """调 gh api。fields 用 -f 传（避免命令行长度限制）。返回解析后的 JSON。"""
+    cmd = [gh, "api", "--method", method, path]
+    for k, v in (fields or {}).items():
+        cmd += ["-f", "%s=%s" % (k, v)]
+    p = run(cmd, check=False)
+    try:
+        return json.loads(p.stdout) if p.stdout and p.stdout.strip() else {}
+    except Exception:
+        return {}
+
+
+def update_apk_json(ver, desc, gh):
+    """更新 crab-tv-live 的 apk 版本 JSON（App 自动更新源）。
+
+    发版必做：APK 下载走 GitHub Release latest/download（发版建 Release 即就绪），
+    但版本 JSON（apk/mobile.json + apk/leanback.json）在 crab-tv-live 仓库，
+    必须单独更新，否则 App 启动检查（Updater→Github.getJson）检测不到新版本。
+    每个 flavor 一个 JSON；更新已有文件须带当前 sha（先 GET 取）。
+    """
+    name = ver["VERSION_NAME"]
+    code = int(ver["VERSION_CODE"])
+    for flavor in APK_JSON_FLAVORS:
+        path = "apk/%s.json" % flavor
+        g = gh_api(gh, "GET", "repos/%s/contents/%s" % (LIVE_REPO, path))
+        sha = g.get("sha") if g else None
+        data = {"name": name, "code": code, "desc": desc}
+        content = base64.b64encode(json.dumps(data, ensure_ascii=False).encode("utf-8")).decode()
+        fields = {"message": "release %s" % name, "content": content}
+        if sha:
+            fields["sha"] = sha
+        r = gh_api(gh, "PUT", "repos/%s/contents/%s" % (LIVE_REPO, path), fields)
+        new_sha = r.get("content", {}).get("sha", "?") if r else "fail"
+        print("   %s.json → sha=%s" % (flavor, new_sha))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--level", choices=["patch", "minor", "major"], default="patch")
@@ -133,9 +181,29 @@ def main():
     ap.add_argument("--skip-build", action="store_true")
     ap.add_argument("--no-offline", action="store_true",
                     help="构建时允许联网拉依赖（默认 --offline，见下方说明）")
+    ap.add_argument("--desc", default=None, help="版本 JSON 的 desc（默认自动生成）")
+    ap.add_argument("--no-apk-json", action="store_true", help="跳过 crab-tv-live 版本 JSON 更新")
+    ap.add_argument("--apk-json-only", action="store_true",
+                    help="只更新 crab-tv-live 版本 JSON（构建失败手动补时用）")
     args = ap.parse_args()
 
     ver = read_ver()
+    if args.dry_run:
+        old = dict(ver)
+        if args.code_only:
+            ver["VERSION_CODE"] = str(int(ver["VERSION_CODE"]) + 1)
+        else:
+            bump(ver, args.level)
+        print("版本: %s (code %s) -> %s (code %s)" % (
+            old["VERSION_NAME"], old["VERSION_CODE"], ver["VERSION_NAME"], ver["VERSION_CODE"]))
+        print("dry-run，到此为止")
+        return
+    if args.apk_json_only:
+        desc = args.desc or "蟹老板TV %s (code %s)" % (ver["VERSION_NAME"], ver["VERSION_CODE"])
+        print("仅更新 crab-tv-live 版本 JSON：%s (code %s)" % (ver["VERSION_NAME"], ver["VERSION_CODE"]))
+        update_apk_json(ver, desc, gh_path())
+        print("完成（仅 apk 版本 JSON）。")
+        return
     old = dict(ver)
     if args.code_only:
         ver["VERSION_CODE"] = str(int(ver["VERSION_CODE"]) + 1)
@@ -144,9 +212,6 @@ def main():
     tag = "v" + ver["VERSION_NAME"]
     print("版本: %s (code %s) -> %s (code %s)" % (
         old["VERSION_NAME"], old["VERSION_CODE"], ver["VERSION_NAME"], ver["VERSION_CODE"]))
-    if args.dry_run:
-        print("dry-run，到此为止")
-        return
 
     write_ver(ver)
     run(["git", "add", "-A"])
@@ -177,6 +242,14 @@ def main():
     run([gh_path(), "release", "create", tag] + apks +
         ["--repo", REPO, "--title", "蟹老板TV %s" % ver["VERSION_NAME"],
          "--notes", notes, "--target", "main"], check=False)
+
+    # 更新 crab-tv-live 版本 JSON（App 自动更新源）。放在 Release 之后，确保 latest/download 已指向新 APK。
+    if not args.no_apk_json:
+        desc = args.desc or "蟹老板TV %s (code %s)，构建于 %s" % (
+            ver["VERSION_NAME"], ver["VERSION_CODE"], time.strftime("%Y-%m-%d %H:%M"))
+        print("更新 crab-tv-live 版本 JSON ...")
+        update_apk_json(ver, desc, gh_path())
+
     print("完成：%s" % tag)
 
 
