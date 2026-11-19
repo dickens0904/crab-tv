@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.library'
+    id 'com.chaquo.python'
+}
+
+android {
+    namespace = 'com.fongmi.chaquo'
+
+    compileSdk libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        minSdk libs.versions.minSdk.get().toInteger()
+        targetSdk libs.versions.targetSdk.get().toInteger()
+        ndk { abiFilters "arm64-v8a", "armeabi-v7a" }
+        python {
+            version = "3.10"
+            // 2026-10-09: without this, build.json is generated with
+            // "extract_packages": [] and no third-party package ever reaches the filesystem.
+            // The pure-Python half of each package then resolves (lxml's __init__.py is
+            // found under files/chaquopy/AssetFinder/requirements/lxml/) while its native
+            // extension module does not, so the very first
+            //   from lxml import etree
+            // fails with "ImportError: cannot import name 'etree' from 'lxml'" -- and since
+            // chaquo/src/main/python/base/spider.py imports lxml.etree at module scope,
+            // every Python spider dies before its first line of code runs.
+            // Native extension modules must be extracted as real files so dlopen can load
+            // them, hence "*" rather than just lxml: ujson, pycryptodome's Crypto.* and
+            // lxml's own deps (chaquopy-libxml2 / libxslt) all ship .so files too.
+            extractPackages('*')
+            pip {
+                install("-r", "requirements.txt")
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            python.srcDirs = ["src/main/python"]
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled = true
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+}
+
+dependencies {
+    implementation project(':catvod')
+    coreLibraryDesugaring libs.desugar
+}
