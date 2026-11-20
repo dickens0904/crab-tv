@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 蟹老板TV 网盘授权辅助：只在网盘授权会话期间工作，用于自动点击「确认/允许」类按钮 -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagDefault|flagReportViewIds|flagRetrieveInteractiveWindows"
+    android:canRetrieveWindowContent="true"
+    android:description="@string/netdisk_auth_service_desc"
+    android:notificationTimeout="120"
+    android:settingsActivity="com.fongmi.android.tv.ui.activity.SettingActivity" />

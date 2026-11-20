@@ -1,0 +1,13 @@
+.idea
+.vscode
+.gradle
+.github
+.settings
+*build
+*.jks
+*.properties
+# 版本号是核心文件，必须入库
+!version.properties
+lib-*.aar
+/Release
+/docs
