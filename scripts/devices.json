@@ -1,0 +1,40 @@
+{
+  "package": "com.fongmi.android.tv.opencode",
+  "adb": "D:/AndroidSdk/platform-tools/adb.exe",
+  "devices": [
+    {
+      "name": "ct2000",
+      "serial": "192.168.31.124:5555",
+      "flavor": "leanback",
+      "abi": "armeabi-v7a",
+      "expect": {
+        "buffer": 5,
+        "vod": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/%E8%9F%B9%E8%80%81%E6%9D%BFtv%28%E7%82%B9%E6%92%AD%29.json",
+        "live": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/merged.m3u"
+      }
+    },
+    {
+      "name": "Dreambox",
+      "serial": "192.168.31.125:5555",
+      "flavor": "leanback",
+      "abi": "armeabi-v7a",
+      "expect": {
+        "buffer": 5,
+        "vod": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/%E8%9F%B9%E8%80%81%E6%9D%BFtv%28%E7%82%B9%E6%92%AD%29.json",
+        "live": "https://gh-proxy.com/https://raw.githubusercontent.com/dickens0904/crab-tv-live/main/merged.m3u"
+      }
+    },
+    {
+      "name": "phone",
+      "serial": "192.168.31.123:5555",
+      "flavor": "mobile",
+      "abi": "arm64-v8a",
+      "expect": {
+        "buffer": null,
+        "vod": null,
+        "live": null
+      },
+      "note": "无线调试端口每次变化；离线时脚本只告警不算失败"
+    }
+  ]
+}
