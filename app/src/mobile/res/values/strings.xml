@@ -1,0 +1,93 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <!-- App -->
+    <string name="app_keep">Keep</string>
+    <string name="app_history">History</string>
+
+    <!-- Nav -->
+    <string name="nav_vod">Vod</string>
+    <string name="nav_live">Live</string>
+    <string name="nav_setting">Setting</string>
+
+    <!-- Menu -->
+    <string name="menu_sync">Sync</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_site">Site</string>
+    <string name="menu_reset">Reset</string>
+
+    <!-- Vod -->
+    <string name="vod_home">Home</string>
+
+    <!-- Detail -->
+    <string name="detail_flag">Flag</string>
+    <string name="detail_episode">Episode</string>
+    <string name="detail_quality">Quality</string>
+    <string name="detail_content">Summary</string>
+    <string name="detail_search">Searching <xliff:g name="name">%s</xliff:g></string>
+
+    <!-- Device -->
+    <string name="device_select">Select devices</string>
+    <string name="device_offline">Device is offline</string>
+    <string name="device_scan">Please scan QR Code to bind</string>
+
+    <!-- Control -->
+    <string name="control_speed">Speed</string>
+    <string name="control_scale">Scale</string>
+    <string name="control_track">Track</string>
+    <string name="control_other">Other</string>
+
+    <!-- Dialog -->
+    <string name="dialog_delete_record">Delete all records?</string>
+    <string name="dialog_delete_keep">All keep records will be removed.</string>
+    <string name="dialog_delete_history">All history records will be removed.</string>
+
+    <!-- Timer -->
+    <string name="timer_5">5 minutes</string>
+    <string name="timer_15">15 minutes</string>
+    <string name="timer_30">30 minutes</string>
+    <string name="timer_60">1 hour</string>
+    <string name="timer_delay">Add 5 minutes</string>
+    <string name="timer_cancel">Cancel timer</string>
+
+    <!-- Hint -->
+    <string name="shortcut">Shortcut has been added.</string>
+
+    <string-array name="select_background">
+        <item>Off</item>
+        <item>On</item>
+        <item>PiP</item>
+    </string-array>
+
+    <!-- Depot -->
+    <string name="home_depot">Depot</string>
+    <string name="depot_title">Discover Depot (GitHub)</string>
+    <string name="depot_search">Search GitHub</string>
+    <string name="setting_depot_search">Search</string>
+    <string name="depot_idle">Tap search to scan GitHub multi-repo configs. Everything that passes the connectivity test is added automatically.</string>
+    <string name="depot_summary">Added <xliff:g name="count">%1$d</xliff:g> depot sources (<xliff:g name="pass">%2$d</xliff:g> passed / <xliff:g name="fail">%3$d</xliff:g> failed / <xliff:g name="skip">%4$d</xliff:g> skipped)</string>
+    <string name="depot_limited">GitHub rate limited, try again later</string>
+    <string name="depot_timeout">Search timed out, showing partial results</string>
+    <string name="depot_empty">No config candidate found</string>
+    <string name="depot_stage_search_progress">Searching GitHub… <xliff:g name="done">%1$d</xliff:g>/<xliff:g name="total">%2$d</xliff:g></string>
+    <string name="depot_stage_probe">Testing connectivity <xliff:g name="done">%1$d</xliff:g>/<xliff:g name="total">%2$d</xliff:g>…</string>
+    <string name="depot_stage_add">Added <xliff:g name="done">%1$d</xliff:g> depot sources…</string>
+    <string name="depot_searching">Searching GitHub…</string>
+
+    <!-- Depot: source type badge -->
+    <string name="depot_type_api">API</string>
+    <string name="depot_type_jar">Spider dep.</string>
+    <string name="depot_type_unknown">Multi-repo</string>
+    <string name="depot_recommended">Recommended sources</string>
+    <string name="depot_recommend">Recommended</string>
+    <string name="depot_recommend_hint">Tested pure HTTP sources, no spider/jar needed. Tap to load instantly.</string>
+    <string name="depot_rec_vod">Vod · bdzy / hhzy (8099)</string>
+    <string name="depot_rec_live">Live · 142 channels (8099)</string>
+    <string name="depot_rec_loaded">Recommended source loaded</string>
+
+    <!-- Empty -->
+    <string name="empty_source_hint">The site returned nothing this time. Try another keyword or another site.</string>
+    <string name="empty_source_no_content">This site returned valid data, but there is nothing in this category. Try another category or another site.</string>
+    <string name="empty_source_bad_response">The site returned a web page or an error message instead of interface data. It is probably rate-limiting this network or its interface has changed. Try another site.</string>
+
+</resources>

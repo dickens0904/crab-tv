@@ -1,0 +1,91 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+
+    <!-- App -->
+    <string name="app_keep">我的收藏</string>
+    <string name="app_history">最近观看</string>
+
+    <!-- Nav -->
+    <string name="nav_vod">点播</string>
+    <string name="nav_live">直播</string>
+    <string name="nav_setting">设置</string>
+
+    <!-- Menu -->
+    <string name="menu_sync">同步</string>
+    <string name="menu_delete">删除</string>
+    <string name="menu_search">搜索</string>
+    <string name="menu_site">站点</string>
+    <string name="menu_reset">重置</string>
+
+    <!-- Vod -->
+    <string name="vod_home">推荐</string>
+
+    <!-- Detail -->
+    <string name="detail_flag">线路</string>
+    <string name="detail_episode">选集</string>
+    <string name="detail_quality">画质</string>
+    <string name="detail_content">简介</string>
+    <string name="detail_search">快搜“<xliff:g name="name">%s</xliff:g>”</string>
+
+    <!-- Device -->
+    <string name="device_select">选择装置</string>
+    <string name="device_offline">装置已离线</string>
+    <string name="device_scan">请扫描影视 QRCode 进行绑定</string>
+
+    <!-- Control -->
+    <string name="control_speed">倍速</string>
+    <string name="control_scale">缩放</string>
+    <string name="control_track">轨道</string>
+    <string name="control_other">其它</string>
+
+    <!-- Dialog -->
+    <string name="dialog_delete_record">删除全部纪录？</string>
+    <string name="dialog_delete_keep">收藏纪录将会全部删除。</string>
+    <string name="dialog_delete_history">观看纪录将会全部删除。</string>
+
+    <!-- Timer -->
+    <string name="timer_5">5 分钟</string>
+    <string name="timer_15">15 分钟</string>
+    <string name="timer_30">30 分钟</string>
+    <string name="timer_60">1 小时</string>
+    <string name="timer_delay">延长 5 分钟</string>
+    <string name="timer_cancel">取消定时器</string>
+
+    <!-- Hint -->
+    <string name="shortcut"> 已于主萤幕新增捷径。</string>
+
+    <string-array name="select_background">
+        <item>关</item>
+        <item>开</item>
+        <item>画中画</item>
+    </string-array>
+
+
+    <!-- Depot -->
+    <string name="home_depot">多仓</string>
+    <string name="depot_title">发现多仓 (GitHub)</string>
+    <string name="depot_search">搜索 GitHub</string>
+    <string name="setting_depot_search">去搜索</string>
+    <string name="depot_idle">点击搜索，扫描 GitHub 上的多仓配置；连通测试通过的会自动加入软件源。</string>
+    <string name="depot_summary">已自动添加 %1$d 个源（通过 %2$d / 失败 %3$d / 跳过 %4$d）</string>
+    <string name="depot_limited">GitHub 限流，稍后再试</string>
+    <string name="depot_timeout">搜索超时，仅显示部分结果</string>
+    <string name="depot_empty">未找到配置候选</string>
+    <string name="depot_stage_search_progress">正在搜索 GitHub… %1$d/%2$d</string>
+    <string name="depot_stage_probe">正在测试通畅性 %1$d/%2$d…</string>
+    <string name="depot_stage_add">已添加 %1$d 条源…</string>
+    <string name="depot_searching">正在搜索 GitHub…</string>
+    <!-- 多仓：源类型标签 -->
+    <string name="depot_type_api">接口</string>
+    <string name="depot_type_jar">爬虫依赖</string>
+    <string name="depot_type_unknown">待展开</string>
+    <string name="depot_recommended">推荐源</string>
+    <string name="depot_recommend">推荐源</string>
+    <string name="depot_recommend_hint">实测可用的纯 HTTP 源，不依赖 spider/jar；点击即加载。</string>
+    <string name="depot_rec_vod">点播 · bdzy/hhzy（8099）</string>
+    <string name="depot_rec_live">直播 · 142 频道（8099）</string>
+    <string name="depot_rec_loaded">推荐源已加载</string>
+    <string name="empty_source_hint">该源这次没有返回内容。建议换个关键词或换个源试试。</string>
+    <string name="empty_source_no_content">该源返回的数据是正常的，但这个分类下暂时没有内容。换个分类或换个源试试。</string>
+    <string name="empty_source_bad_response">该源返回的不是接口数据，而是一个网页或错误提示。多半是站点对当前网络做了风控，或接口已经变更。建议换个源试试。</string>
+
+    </resources>
